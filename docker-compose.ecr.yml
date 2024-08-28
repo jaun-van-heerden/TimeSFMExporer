@@ -57,9 +57,9 @@ services:
   #   depends_on:
   #     - db
 
-networks:
-  default:
-    name: pgnetwork_ecr
+# networks:
+#   default:
+#     name: pgnetwork_ecr
 
 # volumes:
   # postgres_data_ecr:
