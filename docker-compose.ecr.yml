@@ -1,4 +1,4 @@
-version: '3'
+
 services:
   frontend:
     image: 901444280953.dkr.ecr.ap-southeast-2.amazonaws.com/n9490736-jvh:client
@@ -24,8 +24,21 @@ services:
 
   service:
     image: 901444280953.dkr.ecr.ap-southeast-2.amazonaws.com/n9490736-jvh:service
+    environment:
+      - DATABASE_URL=postgresql://myuser:mypassword@db:5432/mydatabase
     ports:
       - "8000:8000"
+    depends_on:
+      - timesfm
+      - db
+
+
+  timesfm:
+    image: 901444280953.dkr.ecr.ap-southeast-2.amazonaws.com/n9490736-jvh:timesfm
+    ports:
+      - "8001:8001"
+    # volumes:
+    #  - ./timesfm:/app/timesfm
     depends_on:
       - db
 

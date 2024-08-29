@@ -6,8 +6,13 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 from pprint import pprint
 
+host = input("Enter the host: ")
+
+if host == "":
+    host = "localhost"
+
 # URL of the endpoint
-url = 'http://localhost:8000/forecast'
+url = f'http://{host}:8000/forecast'
 
 def generate_random_data():
     # Generate a random numpy array or pandas DataFrame
@@ -33,6 +38,7 @@ def generate_random_config():
 
 def send_request():
     # Generate random data and config
+    print("Sending request")
     data = generate_random_data()
     config = generate_random_config()
 
