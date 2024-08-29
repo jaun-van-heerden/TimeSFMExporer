@@ -1,4 +1,5 @@
 # pip install asyncpg httpx
+# python loader.py -n 5 -g 3
 
 import asyncio
 import asyncpg
