@@ -1,4 +1,5 @@
 # pip install asyncpg httpx
+# sudo apt install python3-httpx
 # python loader.py -n 5 -g 3
 
 import asyncio
@@ -10,7 +11,7 @@ import os
 from typing import List
 
 # Database connection parameters
-DATABASE_URL = os.environ.get('DATABASE_URL', 'postgresql://username:password@localhost/dbname')
+DATABASE_URL = os.environ.get('DATABASE_URL', 'postgresql://myuser:mypassword@localhost:5432/mydatabase')
 
 async def get_random_file_ids(pool: asyncpg.Pool, num: int) -> List[int]:
     async with pool.acquire() as conn:
