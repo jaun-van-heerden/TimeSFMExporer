@@ -4,8 +4,8 @@ services:
     image: 901444280953.dkr.ecr.ap-southeast-2.amazonaws.com/n9490736-jvh:client
     ports:
       - "3000:3000"
-    volumes:
-      - ./client:/app/client
+    # volumes:
+    #   - ./client:/app/client
     environment:
       - REACT_APP_API_URL=${REACT_APP_API_URL}
       - CHOKIDAR_USEPOLLING=true
@@ -19,8 +19,8 @@ services:
     ports:
       - "5000:5000"
       - "5432:5432"
-    volumes:
-      - ./server:/app/server
+    # volumes:
+    #   - ./server:/app/server
     environment:
       - NODE_ENV=development
       - POSTGRES_HOST=${POSTGRES_HOST}
@@ -32,8 +32,8 @@ services:
       - POSTGRES_HOST=${POSTGRES_HOST}
     ports:
       - "8000:8000"
-    volumes:
-      - ./service:/app/service
+    # volumes:
+    #   - ./service:/app/service
     depends_on:
       - timesfm
 
@@ -43,5 +43,5 @@ services:
     image: 901444280953.dkr.ecr.ap-southeast-2.amazonaws.com/n9490736-jvh:timesfm
     ports:
       - "8001:8001"
-    volumes:
-      - ./timesfm:/app/timesfm
+    # volumes:
+    #   - ./timesfm:/app/timesfm
