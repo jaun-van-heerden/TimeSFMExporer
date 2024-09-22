@@ -1,0 +1,47 @@
+services:
+  frontend:
+    container_name: frontend
+    image: 901444280953.dkr.ecr.ap-southeast-2.amazonaws.com/n9490736-jvh:client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app/client
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    depends_on:
+      - backend
+
+  backend:
+    container_name: backend
+    image: 901444280953.dkr.ecr.ap-southeast-2.amazonaws.com/n9490736-jvh:server
+    ports:
+      - "5000:5000"
+      - "5432:5432"
+    volumes:
+      - ./server:/app/server
+    environment:
+      - NODE_ENV=development
+      - POSTGRES_HOST=${POSTGRES_HOST}
+
+  service:
+    container_name: service
+    image: 901444280953.dkr.ecr.ap-southeast-2.amazonaws.com/n9490736-jvh:service
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./service:/app/service
+    depends_on:
+      - timesfm
+
+
+  timesfm:
+    container_name: timesfm
+    image: 901444280953.dkr.ecr.ap-southeast-2.amazonaws.com/n9490736-jvh:timesfm
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./timesfm:/app/timesfm
