@@ -19,6 +19,7 @@ services:
     ports:
       - "5000:5000"
       - "5432:5432"
+    network_mode: "host"
     # volumes:
     #   - ./server:/app/server
     environment:
